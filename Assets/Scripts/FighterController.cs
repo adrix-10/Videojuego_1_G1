@@ -59,7 +59,6 @@ public class FighterController : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-
         specialButton.interactable = false;
         healButton.interactable = false;
 
@@ -131,20 +130,21 @@ public class FighterController : MonoBehaviour
         if (currentHealth < 0.0F)
         {
             currentHealth = 0.0F;
+            levelManager = FindObjectOfType<LevelManager>();
+            levelManager.LastScene();
         }
         else if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
-        /*else if (currentHealth == 0.0F) 
+        else if (currentHealth <= 0.0F) 
         {
-            
-        }*/
-        healthText.text = currentHealth.ToString();
-        if (healthText.text == "0") 
-        {
-            levelManager.NextScene();
         }
+        healthText.text = currentHealth.ToString();
+        /*if (healthText.text == "0") 
+        {
+
+        }*/
            
     }
     
